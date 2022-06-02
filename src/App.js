@@ -8,39 +8,41 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Request from './request';
+import { getValue } from '@testing-library/user-event/dist/utils';
 
 // const baseURL = 'https://voyages3-api.crc.rice.edu/voyage/'
 // const Token = 'Token 3e9ed2e0fa70a1a5cb6f34eb7a30ebde208ecd8f'
 
 const api = axios.create( {
   baseURL: 'https://voyages3-api.crc.rice.edu/voyage/',
-  headers: {'Authorization': 'Token 3e9ed2e0fa70a1a5cb6f34eb7a30ebde208ecd8f'},
+  headers: {'Authorization': 'Token 0bfda2118118484d52aeec86812269aadeb37c67'},
 }) 
 
 
 function App() {
 
   // slider {
+
+  const [value, setValue] = React.useState([20,37])
+
+
   function valuetext(value) {
-    console.log([value]);
+    console.log(`${value}°C`);
     api.post("").then(res=> {return res.data})
     // return `${value}°C`;
 
   }
 
-  const [value, setValue] = React.useState([20,37])
+  // const [value, setValue] = React.useState([20,37])
   
   const handleChange = (event, newValue) => {
-    if (newValue !== this.state.value) {
-      setValue(newValue);
-    }
-    
+      setValue(newValue); 
   };
   // } slider end
 
 
   
-  const [items, setItems] = React.useState([])
+  // const [items, setItems] = React.useState([20,37])
 
   return (
             <div className="App">
@@ -52,7 +54,6 @@ function App() {
                     onChange={handleChange}
                     valueLabelDisplay="auto"
                     getAriaValueText={valuetext}
-          
                   />
                 </Box>
                </header>
